@@ -19,12 +19,20 @@ public class ServerEcho {
             Socket clientSocket = serverSocket.accept();
             System.out.println(clientSocket + " connesso");
 
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); //inizializza gli stream x comunicare col client
             out = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            String messaggioRic = in.readLine();
+            String messaggioRic = in.readLine(); //legge il messaggio inviato dal client
             System.out.println("Messaggio ricevuto dal client: " + messaggioRic);
 
+            if(messaggioRic != null) {
+                String mexInMaiusc = messaggioRic.toUpperCase(); //converte il mex ricevuto in maiuscolo
+                out.println(mexInMaiusc); //invia la risposta al client
+                System.out.println("Risposta inviata al client: " + mexInMaiusc);
+            }
+
+            in.close();
+            out.close();
 
         } catch (Exception e) {
             System.err.println("Impossibile ascoltare sulla porta " + porta + ": " + e.getMessage());

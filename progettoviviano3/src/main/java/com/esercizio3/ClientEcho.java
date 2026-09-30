@@ -9,7 +9,7 @@ import java.io.PrintWriter; //serve per inviare il testo al server
 public class ClientEcho {
     public static void main(String[] args) {
        int porta = 5000;
-       String host = "local_host";
+       String host = "localhost";
 
        Scanner tastiera = null;
        PrintWriter out = null;
